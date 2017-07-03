@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons left>
+      <button ion-button
+              icon-only
+              (click)="dismiss(f)">
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>New item</ion-title>
+    <ion-buttons end>
+      <button ion-button
+              color="light"
+              clear
+              [disabled]="f.invalid"
+              (click)="f.ngSubmit.emit()">
+        SAVE
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form #f="ngForm"
+        (ngSubmit)="onSave(f)"
+        novalidate>
+    <ion-list>
+      <ion-item>
+        <ion-label fixed>Ingredient</ion-label>
+        <ion-input type="text"
+                   name="ingredientName"
+                   placeholder="Milk"
+                   ngModel
+                   required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>Amount</ion-label>
+        <ion-input type="number"
+                   name="amount"
+                   placeholder="0"
+                   ngModel
+                   required></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>
