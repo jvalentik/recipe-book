@@ -20,21 +20,33 @@ export class ShoppingListPage {
     this.loadItems();
   }
 
-  private showSnack(item: string): void {
+  private showSnack(msg: string): void {
     let snack = this.toastCtrl.create({
-      message: `${item} was removed`,
-      duration: 3000
+      message: msg,
+      duration: 2000
     });
     snack.present();
   }
 
-  onItemCheck(index: number): void {
-    this.showSnack(this.provider.removeItem(index).name);
+  onItemRemove(index: number): void {
+    this.showSnack(`${this.provider.removeItem(index).name} was removed`);
     this.loadItems();
   }
 
+  onItemEdit(index: number): void {
+    let modal = this.modalCtrl.create('EditShoppingListPage', { id: index });
+    modal.onDidDismiss((data) => {
+      if (data) {
+        this.showSnack(`${this.provider.removeItem(index).name} was updated`);
+        this.provider.addItem(data.ingredientName, data.amount);
+        this.loadItems();
+      }
+    });
+    modal.present();
+  }
+
   onAddItem() {
-    let modal = this.modalCtrl.create('EditShoppingListPage');
+    let modal = this.modalCtrl.create('EditShoppingListPage', { id: 'new' });
     modal.onDidDismiss((data) => {
       if (data) {
         this.provider.addItem(data.ingredientName, data.amount);

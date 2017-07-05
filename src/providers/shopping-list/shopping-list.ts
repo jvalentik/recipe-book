@@ -1,12 +1,11 @@
-import { Injectable } from '@angular/core';
 import { Ingredient } from '../../models/ingredient';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ShoppingListProvider {
   private ingredients: Array<Ingredient> = [];
 
   constructor() {
-    console.log('Hello ShoppingListProvider Provider');
   }
 
   addItem(name: string, amount: number): void {
@@ -14,7 +13,7 @@ export class ShoppingListProvider {
   }
 
   addItems(ingredients: Array<Ingredient>): void {
-    this.ingredients.push(...this.ingredients);
+    this.ingredients.push(...ingredients);
   }
 
   getItems(): Array<Ingredient> {

@@ -1,13 +1,49 @@
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>editRecipe</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>{{ mode }} recipe</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-
-
+  <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()" noValidate>
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Title</ion-label>
+        <ion-input formControlName="title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Description</ion-label>
+        <ion-textarea formControlName="description"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Difficulty</ion-label>
+        <ion-select formControlName="difficulty">
+          <ion-option *ngFor="let option of difficultyOptions"
+                      [value]="option">
+            {{ option }}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <button ion-button
+            block
+            clear
+            type="button"
+            (click)="onManageIngredients()">
+      Manage ingredients
+    </button>
+    <ion-list formArrayName="ingredients">
+      <ion-item *ngFor="let control of recipeForm.get('ingredients').controls;
+      let i = index">
+        <ion-label floating>Name</ion-label>
+        <ion-input [formControlName]="i"></ion-input>
+      </ion-item>
+    </ion-list>
+    <button ion-button
+            block
+            color="primary"
+            [disabled]="recipeForm.invalid">
+      {{mode}} recipe
+    </button>
+  </form>
 </ion-content>

@@ -7,12 +7,12 @@
         <ion-icon name="md-close"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>New item</ion-title>
+    <ion-title>{{ title }}</ion-title>
     <ion-buttons end>
       <button ion-button
               color="light"
               clear
-              [disabled]="f.invalid"
+              [disabled]="f.invalid || f.untouched"
               (click)="f.ngSubmit.emit()">
         SAVE
       </button>
@@ -30,7 +30,7 @@
         <ion-input type="text"
                    name="ingredientName"
                    placeholder="Milk"
-                   ngModel
+                   [ngModel]="ingredientName"
                    required></ion-input>
       </ion-item>
       <ion-item>
@@ -38,7 +38,7 @@
         <ion-input type="number"
                    name="amount"
                    placeholder="0"
-                   ngModel
+                   [ngModel]="amount"
                    required></ion-input>
       </ion-item>
     </ion-list>
