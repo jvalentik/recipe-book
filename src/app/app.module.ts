@@ -14,7 +14,7 @@ import { RecipeProvider } from '../providers/recipe/recipe';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -26,7 +26,7 @@ import { RecipeProvider } from '../providers/recipe/recipe';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ShoppingListProvider,
     ShoppingListProvider,
-    RecipeProvider
+    RecipeProvider,
   ]
 })
 export class AppModule {}
